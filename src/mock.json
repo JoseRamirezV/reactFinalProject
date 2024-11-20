@@ -1,0 +1,62 @@
+[
+   {
+      "id": "a3f3b2e7-6c8d-4f9a-9ef4-45a5c23a019e",
+      "title": "Tallest Mountain",
+      "fact": "Mount Everest, at 8,848 meters (29,029 feet) above sea level, is the tallest mountain on Earth.",
+      "category": "Geography"
+   },
+   {
+      "id": "b4a7c9d6-3411-4e60-b874-78c1fb674ddf",
+      "title": "Deepest Ocean Trench",
+      "fact": "The Mariana Trench is the deepest part of the world's oceans, reaching a depth of about 11 kilometers (7 miles).",
+      "category": "Geography"
+   },
+   {
+      "id": "cf4b2c5d-3654-4f0c-9a5c-06d8bc7de231",
+      "title": "Largest Desert",
+      "fact": "The Sahara Desert in Africa is the largest hot desert in the world, spanning approximately 9.2 million square kilometers (3.6 million square miles).",
+      "category": "Geography"
+   },
+   {
+      "id": "d7e48d2c-89d1-4f94-9b36-3d3e6b8b0838",
+      "title": "Earth's Age",
+      "fact": "Earth is estimated to be about 4.54 billion years old.",
+      "category": "History"
+   },
+   {
+      "id": "e4c5d1b9-328e-4d8a-9eaf-01e9c93d52c4",
+      "title": "Largest Ocean",
+      "fact": "The Pacific Ocean is the largest ocean on Earth, covering more than 63 million square miles.",
+      "category": "Geography"
+   },
+   {
+      "id": "f8c6d9b7-5217-4c48-8e2d-08e1c267dbbd",
+      "title": "Earth's Atmosphere",
+      "fact": "Earth's atmosphere is composed of 78% nitrogen, 21% oxygen, and trace amounts of other gases.",
+      "category": "Science"
+   },
+   {
+      "id": "0b7a3f1e-2d3b-4ef6-9af3-2d6a7e7baf3e",
+      "title": "Rotation and Revolution",
+      "fact": "Earth takes approximately 24 hours to complete one rotation on its axis and about 365.25 days to orbit the Sun.",
+      "category": "Astronomy"
+   },
+   {
+      "id": "1d3b5e9c-7b8e-40a7-8e3e-5d8f3b7d1a9e",
+      "title": "Earth's Magnetic Field",
+      "fact": "Earth's magnetic field protects the planet from solar wind and cosmic radiation.",
+      "category": "Science"
+   },
+   {
+      "id": "2f4b7e1d-9e0a-4e2c-9b7d-3f8c3e9d7b6a",
+      "title": "Water Coverage",
+      "fact": "About 71% of Earth's surface is covered by water, with the majority being saltwater in the oceans.",
+      "category": "Geography"
+   },
+   {
+      "id": "3c6a9d4b-8f1e-42d8-9c7b-4e7a3d9b2f7d",
+      "title": "Diverse Ecosystems",
+      "fact": "Earth hosts a variety of ecosystems, including forests, deserts, grasslands, and aquatic environments.",
+      "category": "Environment"
+   }
+]
