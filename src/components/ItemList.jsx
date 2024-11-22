@@ -1,12 +1,29 @@
 import PropTypes, { shape } from 'prop-types';
 import ItemCard from './ItemCard';
 
-export default function ItemList({ items }) {
+export default function ItemList({ items, deleteFact, updateFact }) {
    return (
-      <section className='grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] w-5/6 gap-8 mt-10 mx-auto'>
-         {items.map((item) => (
-            <ItemCard key={item.id} item={item} />
-         ))}
+      <section
+         className={`grid w-5/6 gap-8 mt-10 mx-auto ${
+            items &&
+            items.length > 0 &&
+            'grid-cols-[repeat(auto-fill,minmax(15rem,1fr))]'
+         }`}
+      >
+         {items && items.length > 0 ? (
+            items.map((item) => (
+               <ItemCard
+                  key={item._id}
+                  item={item}
+                  deleteFact={deleteFact}
+                  updateFact={updateFact}
+               />
+            ))
+         ) : (
+            <div className='p-20'>
+               <h2 className='text-2xl text-gray-400 font-semibold'>No hay hechos para mostrar</h2>
+            </div>
+         )}
       </section>
    );
 }
@@ -19,4 +36,6 @@ ItemList.propTypes = {
          category: PropTypes.string,
       })
    ),
+   deleteFact: PropTypes.func,
+   updateFact: PropTypes.func,
 };

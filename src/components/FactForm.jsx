@@ -24,11 +24,15 @@ const categories = [
    },
 ];
 
-export default function FactForm({ handleSubmit, open, close }) {
+export default function FactForm({ handleSubmit, open, close, values }) {
+   const formId = values ? `factForm_${values?._id}` : 'factForm';
+
    return (
       <dialog
          open={open}
-         className={`size-full absolute top-0 left-0 bg-black/10 backdrop-blur-sm ${open ? 'flex justify-center z-10' : ''}`}
+         className={`size-full absolute top-0 left-0 bg-black/10 backdrop-blur-sm ${
+            open ? 'flex justify-center z-10' : ''
+         }`}
       >
          <div className='bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow shadow-white/20 text-white bounce'>
             <header>
@@ -36,7 +40,7 @@ export default function FactForm({ handleSubmit, open, close }) {
             </header>
             <form
                onSubmit={handleSubmit}
-               id='factForm'
+               id={formId}
                className='flex flex-col gap-4'
             >
                <label className='fact-input'>
@@ -45,6 +49,7 @@ export default function FactForm({ handleSubmit, open, close }) {
                      name='title'
                      id='title'
                      placeholder='Titulo'
+                     defaultValue={values?.title ?? ''}
                      required
                   />
                </label>
@@ -54,6 +59,7 @@ export default function FactForm({ handleSubmit, open, close }) {
                      className='h-28 resize-none'
                      id='fact'
                      placeholder='Dato curioso'
+                     defaultValue={values?.fact ?? ''}
                      required
                   ></textarea>
                </label>
@@ -62,6 +68,7 @@ export default function FactForm({ handleSubmit, open, close }) {
                      name='category'
                      id='category'
                      placeholder='Dato curioso'
+                     defaultValue={values?.category ?? ''}
                      required
                   >
                      <option value=''>Seleccione categoría</option>
@@ -74,7 +81,7 @@ export default function FactForm({ handleSubmit, open, close }) {
                </label>
             </form>
             <footer className='flex flex-row-reverse gap-2 justify-start pt-4'>
-               <button className='opt-button bg-blue-600' form='factForm'>
+               <button className='opt-button bg-blue-600' form={formId}>
                   Guardar
                </button>
                <button className='opt-button bg-red-600' onClick={close}>
@@ -90,4 +97,5 @@ FactForm.propTypes = {
    handleSubmit: PropTypes.func,
    open: PropTypes.bool,
    close: PropTypes.func,
+   values: PropTypes.object,
 };

@@ -18,15 +18,15 @@ export default function Header({ addFact }) {
 
       if (data.category === '') return;
 
-      addFact({ id, ...data })
+      addFact({ id, ...data });
+      form.reset()
       closeForm();
    };
 
-
    return (
       <>
-         <nav className='inline-flex justify-between items-center px-4 py-2 bg-gray-700/50 w-2/4 rounded-full'>
-            <div className='relative inline-flex gap-2 p-2 group'>
+         <nav className='inline-flex justify-between items-center p-2 bg-gray-700/50 w-4/5 md:w-2/4 rounded-full'>
+            <div className='relative inline-flex gap-2 p-2 group z-10'>
                <img src='vite.svg' alt='' className='size-5 rounded-full' />
                <div className='absolute top-full rounded-md bg-gray-800 p-2 scale-0 group-hover:scale-100 transition-transform origin-top-left'>
                   <ul>
@@ -47,13 +47,13 @@ export default function Header({ addFact }) {
             </div>
             <ul className='relative flex gap-2 h-full'>
                <li className='absolute right-[120%]'>
-                  <button className='p-2 hover:bg-gray-600 rounded-full transition-colors duration-300'>
+                  <button className='p-2 rounded-full transition-colors duration-300 hover:bg-red-600'>
                      <AiOutlineDelete className='size-5' />
                   </button>
                </li>
                <li className='contents'>
                   <button
-                     className='p-2 hover:bg-gray-600 rounded-full transition-colors duration-300'
+                     className='p-2 rounded-full transition-colors duration-300 hover:bg-blue-600'
                      onClick={() => setOpenForm(true)}
                   >
                      <AiOutlinePlus className='size-5' />
