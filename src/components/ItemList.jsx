@@ -21,7 +21,9 @@ export default function ItemList({ items, deleteFact, updateFact }) {
             ))
          ) : (
             <div className='p-20'>
-               <h2 className='text-2xl text-gray-400 font-semibold'>No hay hechos para mostrar</h2>
+               <h2 className='text-2xl text-gray-400 font-semibold'>
+                  No hay hechos para mostrar
+               </h2>
             </div>
          )}
       </section>
@@ -35,7 +37,7 @@ ItemList.propTypes = {
          description: PropTypes.string,
          category: PropTypes.string,
       })
-   ),
-   deleteFact: PropTypes.func,
-   updateFact: PropTypes.func,
+   ).isRequired,
+   deleteFact: PropTypes.func.isRequired,
+   updateFact: PropTypes.func.isRequired,
 };

@@ -8,10 +8,12 @@ import { useEffect, useState } from 'react';
 
 export const useFacts = () => {
    const [facts, setFacts] = useState([]);
+   const [isLoaded, setIsLoaded] = useState(false)
 
    useEffect(() => {
       getFacts().then((res) => {
          setFacts(res);
+         setIsLoaded(true)
       });
    }, []);
 
@@ -49,6 +51,7 @@ export const useFacts = () => {
 
    return {
       facts,
+      isLoaded,
       addFact,
       deleteFact,
       updateFact,

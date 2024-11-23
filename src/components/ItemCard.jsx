@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
-import FactForm from './FactForm';
 import { useState } from 'react';
 
-export default function Item({ item, deleteFact, updateFact }) {
+import FactForm from './FactForm';
+
+export default function Item({ item, deleteFact, updateFact, className }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
@@ -20,8 +21,11 @@ export default function Item({ item, deleteFact, updateFact }) {
 
    return (
       <>
-         <div className='relative size-full flex flex-col bg-gray-700/50 rounded-2xl shadow-lg p-4 pb-0 group'>
-            <div className='absolute top-3 right-3 scale-0 group-hover:scale-100 transition-transform'>
+         <div
+            className={`${className} relative size-full flex flex-col bg-gray-700/50 rounded-2xl shadow-lg p-4 pb-0 group animate-grow`}
+         >
+            {/* //TODO: add check to delete functionality */}
+            {/* <div className='absolute top-3 right-3 scale-0 group-hover:scale-100 transition-transform'>
                <input
                   className='hidden peer'
                   type='checkbox'
@@ -32,7 +36,7 @@ export default function Item({ item, deleteFact, updateFact }) {
                   htmlFor={`delete_${item._id}`}
                   className='block size-4 rounded-full bg-gray-600 cursor-pointer transition-all peer-checked:bg-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-offset-blue-600'
                />
-            </div>
+            </div> */}
             <header className='text-xl font-bold text-start mb-1 line-clamp-1'>
                {item.title}
             </header>
@@ -76,7 +80,8 @@ Item.propTypes = {
       title: PropTypes.string,
       fact: PropTypes.string,
       category: PropTypes.string,
-   }),
+   }).isRequired,
    deleteFact: PropTypes.func,
    updateFact: PropTypes.func,
+   className: PropTypes.string,
 };

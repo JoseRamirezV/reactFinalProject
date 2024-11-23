@@ -1,24 +1,7 @@
 .fact-input {
-   @apply flex flex-col gap-1 text-left [&>*]:text-black [&>*]:px-2 [&>*]:py-1 [&>*]:rounded-md [&>*]:w-60 [&>*]:focus-within:outline-none;
+   @apply flex flex-col gap-1 text-left [&>*]:text-black [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:w-60 [&>*]:focus-within:outline-none;
 }
 
 .opt-button {
    @apply px-3 py-1 rounded-md hover:scale-95 transition-transform;
-}
-
-.bounce {
-   transform-origin: center;
-   animation: bounce normal 0.3s;
-}
-
-@keyframes bounce {
-   0% {
-      transform: scale(0.8);
-   }
-   50% {
-      transform: scale(1.2);
-   }
-   100%{
-      transform: scale(1);
-   }
 }

@@ -4,16 +4,19 @@ import ItemList from './components/ItemList';
 import { useFacts } from './hooks/useFacts';
 
 function App() {
-   const { facts, addFact, deleteFact, updateFact } = useFacts();
+   const { facts, isLoaded, addFact, deleteFact, updateFact } = useFacts();
 
    return (
       <>
          <Header addFact={addFact} />
-         <ItemList
-            items={facts}
-            deleteFact={deleteFact}
-            updateFact={updateFact}
-         />
+         {isLoaded && (
+            <ItemList
+               items={facts}
+               isLoaded={isLoaded}
+               deleteFact={deleteFact}
+               updateFact={updateFact}
+            />
+         )}
       </>
    );
 }

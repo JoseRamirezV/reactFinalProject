@@ -30,11 +30,11 @@ export default function FactForm({ handleSubmit, open, close, values }) {
    return (
       <dialog
          open={open}
-         className={`size-full absolute top-0 left-0 bg-black/10 backdrop-blur-sm ${
+         className={`size-full fixed top-0 left-0 bg-black/10 backdrop-blur-sm ${
             open ? 'flex justify-center z-10' : ''
          }`}
       >
-         <div className='bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow shadow-white/20 text-white bounce'>
+         <div className='bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow text-white animate-spawn'>
             <header>
                <h2 className='text-3xl mb-6 font-bold'>Fun Fact</h2>
             </header>

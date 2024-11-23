@@ -1,8 +1,13 @@
-# React + Vite
+# Descripción
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Ejecutar en Dev
 
-Currently, two official plugins are available:
+1. Clonar repositorio
+2. Crear copia de archivo `.env.template`, renombrar a `.env` y agregar la URL del backend
+3. Instalar dependencias `npm i`
+4. Correr proyecto en modo desarrollo `npm run dev`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Dependencias
+
+-  `react-icons V5.3.0`
+-  `tailwindcss V3.4.15`
