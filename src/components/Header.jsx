@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
+import { setThemePreference } from '@/utils/setThemePreference';
 import { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineMoon, AiOutlinePlus, AiOutlineSun } from 'react-icons/ai';
 import {
    MdFormatListBulleted,
    MdOutlineAutoAwesomeMosaic,
 } from 'react-icons/md';
-// import {  AiOutlineDelete, AiOutlineMoon } from 'react-icons/ai';
 import FactForm from './FactForm';
 
 export default function Header({ showAsList, addFact, toggleViewMode }) {
@@ -26,24 +26,25 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
       closeForm();
    };
 
+   const toggleDarkMode = () => {
+      const darkMode = window.localStorage.getItem('dark-mode') === 'true';
+      setThemePreference(!darkMode);
+   };
+
    return (
       <>
-         <nav className='inline-flex sticky top-8 justify-between items-center py-2 px-4 bg-gray-700/50 w-4/5 md:w-2/4 rounded-full z-10 backdrop-blur-sm'>
+         <nav className='inline-flex sticky top-8 justify-between items-center py-2 px-4 bg-gray-100/50 shadow dark:dark:bg-gray-700/50 w-4/5 md:w-2/4 rounded-full z-10 backdrop-blur-sm'>
             <div className='relative inline-flex items-center gap-1 group'>
-               <a
-                  href='#'
-                  className='p-2 hover:bg-gray-50 transition group/logo rounded-full'
-               >
-                  <img
-                     src='earth.webp'
-                     alt=''
-                     className='size-5 group-hover/logo:invert transition'
-                  />
-               </a>
                {/* //TODO: add dark mode toggle function */}
-               {/* <button className='relative p-2 rounded-full transition-colors hover:bg-gray-700'>
-                  <AiOutlineMoon className='size-5' />
-               </button> */}
+               <button
+                  className='p-2 rounded-full text-slate-600 dark:text-white hover:scale-110 transition-all'
+                  onClick={toggleDarkMode}
+               >
+                  <span className='relative flex justify-center items-center size-5'>
+                     <AiOutlineMoon className='absolute rotate-0 scale-1 dark:rotate-180 dark:scale-0 size-full transition-transform' />
+                     <AiOutlineSun className='absolute rotate-180 scale-0 dark:rotate-0 dark:scale-100 size-full text-white transition-transform' />
+                  </span>
+               </button>
             </div>
             <ul className='relative flex gap-1 h-full'>
                {/* //TODO: add delete selected feature */}
@@ -54,24 +55,26 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                </li> */}
                <li>
                   <button
-                     className='relative p-2 rounded-full transition-colors duration-300'
+                     className='rounded-full p-2 transition-colors duration-300 text-slate-700 dark:text-white  hover:text-white hover:bg-slate-800'
                      onClick={toggleViewMode}
                   >
-                     <MdOutlineAutoAwesomeMosaic
-                        className={`${
-                           showAsList ? 'scale-1' : 'scale-0'
-                        } absolute top-0 left-0 size-5 transition-transform`}
-                     />
-                     <MdFormatListBulleted
-                        className={`${
-                           showAsList ? 'scale-0' : 'scale-1'
-                        } absolute top-0 left-0 size-5 transition-transform`}
-                     />
+                     <span className='relative flex justify-center items-center size-5'>
+                        <MdOutlineAutoAwesomeMosaic
+                           className={`${
+                              showAsList ? 'scale-1' : 'scale-0'
+                           } absolute size-5 transition-transform`}
+                        />
+                        <MdFormatListBulleted
+                           className={`${
+                              showAsList ? 'scale-0' : 'scale-1'
+                           } absolute size-5 transition-transform`}
+                        />
+                     </span>
                   </button>
                </li>
                <li>
                   <button
-                     className='p-2 rounded-full transition-colors duration-300 hover:bg-blue-600'
+                     className='p-2 rounded-full transition-colors duration-300 text-slate-700 hover:text-white dark:text-white hover:bg-blue-600'
                      onClick={() => setOpenForm(true)}
                   >
                      <AiOutlinePlus className='size-5' />

@@ -1,5 +1,5 @@
 .fact-input {
-   @apply flex flex-col gap-1 text-left [&>*]:text-black [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:w-60 [&>*]:focus-within:outline-none;
+   @apply flex flex-col gap-1 text-left [&>*]:text-black [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:w-60 [&>*]:focus-within:outline-none shadow;
 }
 
 .opt-button {

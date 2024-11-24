@@ -34,9 +34,9 @@ export default function FactForm({ handleSubmit, open, close, values }) {
             open ? 'flex justify-center z-10' : ''
          }`}
       >
-         <div className='bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow text-white animate-spawn'>
+         <div className='bg-gray-100 dark:bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow text-white animate-spawn'>
             <header>
-               <h2 className='text-3xl mb-6 font-bold'>Fun Fact</h2>
+               <h2 className='text-3xl mb-6 font-bold text-gray-700 dark:text-white'>Fun Fact</h2>
             </header>
             <form
                onSubmit={handleSubmit}
