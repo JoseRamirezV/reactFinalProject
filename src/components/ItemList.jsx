@@ -28,7 +28,7 @@ export default function ItemList({
          ) : (
             <div className='p-20'>
                <h2 className='text-2xl text-gray-400 font-semibold'>
-                  No hay hechos para mostrar
+                  Nada para mostrar todavía...
                </h2>
             </div>
          )}
