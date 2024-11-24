@@ -1,14 +1,20 @@
 import PropTypes, { shape } from 'prop-types';
 import ItemCard from './ItemCard';
 
-export default function ItemList({ items, deleteFact, updateFact }) {
+export default function ItemList({
+   items,
+   showAsList,
+   deleteFact,
+   updateFact,
+}) {
+   const listStyles = 'flex flex-col w-2/4';
+   const gridStyles =
+      (items && items.length) > 0 &&
+      'grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] w-5/6 ';
+
    return (
       <section
-         className={`grid w-5/6 gap-8 mt-10 mx-auto ${
-            items &&
-            items.length > 0 &&
-            'grid-cols-[repeat(auto-fill,minmax(15rem,1fr))]'
-         }`}
+         className={`${ showAsList ? listStyles : gridStyles } gap-8 mt-10 mx-auto transition-all`}
       >
          {items && items.length > 0 ? (
             items.map((item) => (
@@ -38,6 +44,7 @@ ItemList.propTypes = {
          category: PropTypes.string,
       })
    ).isRequired,
+   showAsList: PropTypes.bool,
    deleteFact: PropTypes.func.isRequired,
    updateFact: PropTypes.func.isRequired,
 };

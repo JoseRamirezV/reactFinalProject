@@ -2,10 +2,14 @@ import PropTypes from 'prop-types';
 
 import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+import {
+   MdFormatListBulleted,
+   MdOutlineAutoAwesomeMosaic,
+} from 'react-icons/md';
 // import {  AiOutlineDelete, AiOutlineMoon } from 'react-icons/ai';
 import FactForm from './FactForm';
 
-export default function Header({ addFact }) {
+export default function Header({ showAsList, addFact, toggleViewMode }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
@@ -26,7 +30,10 @@ export default function Header({ addFact }) {
       <>
          <nav className='inline-flex sticky top-8 justify-between items-center py-2 px-4 bg-gray-700/50 w-4/5 md:w-2/4 rounded-full z-10 backdrop-blur-sm'>
             <div className='relative inline-flex items-center gap-1 group'>
-               <a href='#' className='p-2 hover:bg-gray-50 transition group/logo rounded-full'>
+               <a
+                  href='#'
+                  className='p-2 hover:bg-gray-50 transition group/logo rounded-full'
+               >
                   <img
                      src='earth.webp'
                      alt=''
@@ -47,6 +54,23 @@ export default function Header({ addFact }) {
                </li> */}
                <li>
                   <button
+                     className='relative p-2 rounded-full transition-colors duration-300'
+                     onClick={toggleViewMode}
+                  >
+                     <MdOutlineAutoAwesomeMosaic
+                        className={`${
+                           showAsList ? 'scale-1' : 'scale-0'
+                        } absolute top-0 left-0 size-5 transition-transform`}
+                     />
+                     <MdFormatListBulleted
+                        className={`${
+                           showAsList ? 'scale-0' : 'scale-1'
+                        } absolute top-0 left-0 size-5 transition-transform`}
+                     />
+                  </button>
+               </li>
+               <li>
+                  <button
                      className='p-2 rounded-full transition-colors duration-300 hover:bg-blue-600'
                      onClick={() => setOpenForm(true)}
                   >
@@ -65,5 +89,7 @@ export default function Header({ addFact }) {
 }
 
 Header.propTypes = {
+   showAsList: PropTypes.bool,
    addFact: PropTypes.func,
+   toggleViewMode: PropTypes.func,
 };
