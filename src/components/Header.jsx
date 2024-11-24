@@ -13,15 +13,14 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
+   const handleSubmit = async (e) => {
       const form = e.currentTarget;
       const id = crypto.randomUUID();
       const data = Object.fromEntries(new window.FormData(form));
 
       if (data.category === '') return;
 
-      addFact({ id, ...data });
+      await addFact({ id, ...data });
       form.reset();
       closeForm();
    };
@@ -42,7 +41,7 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                >
                   <span className='relative flex justify-center items-center size-5'>
                      <AiOutlineMoon className='absolute rotate-0 scale-1 dark:rotate-180 dark:scale-0 size-full transition-transform' />
-                     <AiOutlineSun className='absolute rotate-180 scale-0 dark:rotate-0 dark:scale-100 size-full text-white transition-transform' />
+                     <AiOutlineSun className='absolute -rotate-180 scale-0 dark:rotate-0 dark:scale-100 size-full text-white transition-transform' />
                   </span>
                </button>
             </div>
@@ -53,20 +52,24 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                      <AiOutlineDelete className='size-5' />
                   </button>
                </li> */}
-               <li>
+               <li className='hidden md:list-item'>
                   <button
-                     className='rounded-full p-2 transition-colors duration-300 text-slate-700 dark:text-white  hover:text-white hover:bg-slate-800'
+                     className='rounded-full p-2 transition-colors duration-300 text-slate-700 dark:text-white  hover:bg-gray-300/50 dark:hover:bg-slate-800'
                      onClick={toggleViewMode}
                   >
                      <span className='relative flex justify-center items-center size-5'>
                         <MdOutlineAutoAwesomeMosaic
                            className={`${
-                              showAsList ? 'scale-1' : 'scale-0'
+                              showAsList
+                                 ? 'scale-1 rotate-0 '
+                                 : 'scale-0 rotate-180'
                            } absolute size-5 transition-transform`}
                         />
                         <MdFormatListBulleted
                            className={`${
-                              showAsList ? 'scale-0' : 'scale-1'
+                              showAsList
+                                 ? 'scale-0 -rotate-180'
+                                 : 'scale-1 rotate-0'
                            } absolute size-5 transition-transform`}
                         />
                      </span>

@@ -9,12 +9,12 @@ export default function Item({ item, deleteFact, updateFact, className }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
       const form = e.currentTarget;
       const data = Object.fromEntries(new window.FormData(form));
 
-      updateFact(item._id, { id: item._id, ...data });
+      await updateFact(item._id, { id: item._id, ...data });
       form.reset();
       closeForm();
    };
@@ -40,11 +40,11 @@ export default function Item({ item, deleteFact, updateFact, className }) {
             <header className='text-xl font-bold text-start mb-1 text-gray-700 dark:text-white line-clamp-1 transition-colors'>
                {item.title}
             </header>
-            <p className='text-blue-700 dark:text-orange-200 text-pretty text-start text-sm line-clamp-4 mb-auto transition-colors'>
+            <p className='font-medium text-blue-700 dark:text-orange-200 text-pretty text-start text-sm line-clamp-4 mb-auto transition-colors'>
                {item.fact}
             </p>
             <footer className='relative text-xs text-start my-4 flex-grow-1'>
-               <a href='#' className='hover:underline block pt-4 text-gray-900 dark:text-white transition-colors'>
+               <a href='#' className='hover:underline block pt-4 w-fit text-gray-900 dark:text-white transition-colors'>
                   {item.category}
                </a>
                <div className='absolute right-0 bottom-0 flex gap-2 transform scale-0 group-hover:scale-100 origin-right transition-transform'>

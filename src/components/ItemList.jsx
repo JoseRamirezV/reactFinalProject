@@ -7,10 +7,10 @@ export default function ItemList({
    deleteFact,
    updateFact,
 }) {
-   const listStyles = 'flex flex-col w-2/4';
+   const listStyles = 'flex flex-col w-5/6 md:w-2/4';
    const gridStyles =
       (items && items.length) > 0 &&
-      'grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] w-5/6 ';
+      'space-y-4 md:space-y-0 md:grid md:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] w-5/6';
 
    return (
       <section

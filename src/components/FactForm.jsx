@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import '@/css/FactForm.css';
+import { useState } from 'react';
+import { AiOutlineLoading } from 'react-icons/ai';
 
 const categories = [
    {
@@ -24,8 +26,23 @@ const categories = [
    },
 ];
 
-export default function FactForm({ handleSubmit, open, close, values }) {
+export default function FactForm({
+   handleSubmit: saveChanges,
+   open,
+   close,
+   values,
+}) {
+   const [isLoading, setIsLoading] = useState(false);
+
    const formId = values ? `factForm_${values?._id}` : 'factForm';
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      setIsLoading(true);
+      await saveChanges(e);
+      setIsLoading(false);
+   };
 
    return (
       <dialog
@@ -36,7 +53,9 @@ export default function FactForm({ handleSubmit, open, close, values }) {
       >
          <div className='bg-gray-100 dark:bg-gray-800 size-fit mt-28 rounded-xl p-8 shadow text-white animate-spawn'>
             <header>
-               <h2 className='text-3xl mb-6 font-bold text-gray-700 dark:text-white'>Fun Fact</h2>
+               <h2 className='text-3xl mb-6 font-bold text-gray-700 dark:text-white'>
+                  Fun Fact
+               </h2>
             </header>
             <form
                onSubmit={handleSubmit}
@@ -81,10 +100,22 @@ export default function FactForm({ handleSubmit, open, close, values }) {
                </label>
             </form>
             <footer className='flex flex-row-reverse gap-2 justify-start pt-4'>
-               <button className='opt-button bg-blue-600' form={formId}>
-                  Guardar
+               <button
+                  className='opt-button bg-blue-600 w-24 disabled:opacity-60 disabled:pointer-events-none'
+                  form={formId}
+                  disabled={isLoading}
+               >
+                  {isLoading ? (
+                     <AiOutlineLoading className='size-5 animate-spin mx-auto' />
+                  ) : (
+                     'Guardar'
+                  )}
                </button>
-               <button className='opt-button bg-red-600' onClick={close}>
+               <button
+                  className='opt-button bg-red-600 disabled:opacity-60 disabled:pointer-events-none'
+                  onClick={close}
+                  disabled={isLoading}
+               >
                   Cancelar
                </button>
             </footer>
