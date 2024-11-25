@@ -35,7 +35,7 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
             <div className='relative inline-flex items-center gap-1 group'>
                {/* //TODO: add dark mode toggle function */}
                <button
-                  className='p-2 rounded-full text-slate-600 dark:text-white hover:scale-110 transition-all'
+                  className='p-2 rounded-full text-slate-600 outline-none dark:text-white hover:scale-110 transition-all focus:scale-110'
                   onClick={toggleDarkMode}
                >
                   <span className='relative flex justify-center items-center size-5'>
@@ -53,7 +53,7 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                </li> */}
                <li className='hidden md:list-item'>
                   <button
-                     className='rounded-full p-2 transition-colors duration-300 text-slate-700 dark:text-white  hover:bg-gray-300/50 dark:hover:bg-slate-800'
+                  className='rounded-full p-2 outline-none transition-colors duration-300 text-slate-700 dark:text-white  hover:bg-gray-300/50 dark:hover:bg-slate-800 focus:bg-gray-300/50 dark:focus:bg-slate-800 '
                      onClick={toggleViewMode}
                   >
                      <span className='relative flex justify-center items-center size-5'>
@@ -76,7 +76,7 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                </li>
                <li>
                   <button
-                     className='p-2 rounded-full transition-colors duration-300 text-slate-700 hover:text-white dark:text-white hover:bg-blue-600'
+                     className='p-2 rounded-full outline-none transition-colors duration-300 text-slate-700 hover:text-white dark:text-white hover:bg-blue-600 focus:bg-blue-600 focus:text-white'
                      onClick={() => setOpenForm(true)}
                   >
                      <AiOutlinePlus className='size-5' />

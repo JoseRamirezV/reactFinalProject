@@ -7,6 +7,9 @@ import Loading from './icons/Loading';
 
 const FactForm = lazy(() => import('./FactForm'));
 
+const actionButton =
+   'rounded-xl p-2 transition-all outline-none hover:scale-110 focus:scale-110 focus:ring';
+
 export default function Item({ item, deleteFact, updateFact, className }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
@@ -47,19 +50,19 @@ export default function Item({ item, deleteFact, updateFact, className }) {
             <footer className='relative text-xs text-start my-4 flex-grow-1'>
                <a
                   href='#'
-                  className='hover:underline block pt-4 w-fit text-gray-900 dark:text-white transition-colors'
+                  className='hover:underline block pt-4 w-fit text-gray-900 dark:text-white transition-colors focus:underline outline-none'
                >
                   {item.category}
                </a>
-               <div className='absolute right-0 bottom-0 flex gap-2 transform scale-0 group-hover:scale-100 origin-right transition-transform'>
+               <div className='absolute right-0 bottom-0 flex gap-2 transform scale-0 group-hover:scale-100 origin-right transition-transform focus-within:scale-100'>
                   <button
-                     className='rounded-xl p-2 bg-blue-700 dark:bg-amber-500 hover:scale-110 transition-all'
+                     className={`${actionButton} bg-blue-700 dark:bg-amber-500 dark:focus:ring-amber-300`}
                      onClick={() => setOpenForm(true)}
                   >
                      <LuPencil className='size-4' />
                   </button>
                   <button
-                     className='rounded-xl p-2 bg-red-600 hover:scale-110 transition-all'
+                     className={`${actionButton} bg-red-600 focus:ring-red-300`}
                      onClick={() => deleteFact(item._id)}
                   >
                      <FaRegTrashCan className='size-4' />

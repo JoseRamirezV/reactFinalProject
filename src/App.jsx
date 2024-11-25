@@ -4,6 +4,7 @@ import Header from './components/Header';
 import ItemList from './components/ItemList';
 import { useFacts } from './hooks/useFacts';
 import { setThemePreference } from './utils/setThemePreference';
+import Welcome from './components/Welcome';
 
 function App() {
    const { facts, isLoaded, addFact, deleteFact, updateFact } = useFacts();
@@ -11,10 +12,10 @@ function App() {
 
    const toggleViewMode = () => setShowAsList(!showAsList);
 
-   useEffect(()=>{
-      const theme = window.localStorage.getItem('dark-mode') === 'true'
-      setThemePreference(theme)
-   },[])
+   useEffect(() => {
+      const theme = window.localStorage.getItem('dark-mode') === 'true';
+      setThemePreference(theme);
+   }, []);
 
    return (
       <>
@@ -32,6 +33,7 @@ function App() {
                updateFact={updateFact}
             />
          )}
+         <Welcome />
       </>
    );
 }
