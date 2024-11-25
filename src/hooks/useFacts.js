@@ -4,7 +4,6 @@ import {
    getFacts,
    updateFactService,
 } from '@/services/fact.service';
-import { wait } from '@/utils/wait';
 import { useEffect, useState } from 'react';
 
 export const useFacts = () => {
@@ -23,7 +22,6 @@ export const useFacts = () => {
          userEmail: 'jr.ramirez.varon@gmail.com',
          ...fact,
       });
-      await wait(3)
       if (!ok) return;
       setFacts((prev) => [newFact, ...prev]);
    };

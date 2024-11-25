@@ -23,7 +23,14 @@ export const getFacts = async () => {
       const res = await fetch(BASE_URL);
       const data = await res.json();
 
-      return data;
+      const filteredData = data.map((fact) => {
+         delete fact.updatedAt;
+         delete fact.createdAt;
+
+         return fact
+      });
+
+      return filteredData;
    } catch (error) {
       return { error };
    }
