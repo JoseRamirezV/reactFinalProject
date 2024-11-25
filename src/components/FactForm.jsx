@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import '@/css/FactForm.css';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { AiOutlineLoading } from 'react-icons/ai';
+import Loading from './icons/Loading';
 
 const categories = [
    {
@@ -33,15 +33,20 @@ export default function FactForm({
    values,
 }) {
    const [isLoading, setIsLoading] = useState(false);
+   const [isDisabled, setIsDisabled] = useState(true);
 
    const formId = values ? `factForm_${values?._id}` : 'factForm';
 
    const handleSubmit = async (e) => {
       e.preventDefault();
+      const form = e.currentTarget;
+      const data = Object.fromEntries(new window.FormData(form));
 
       setIsLoading(true);
-      await saveChanges(e);
+      await saveChanges(data);
       setIsLoading(false);
+
+      form.reset();
    };
 
    return (
@@ -69,6 +74,7 @@ export default function FactForm({
                      id='title'
                      placeholder='Titulo'
                      defaultValue={values?.title ?? ''}
+                     onChange={() => setIsDisabled(false)}
                      required
                   />
                </label>
@@ -79,6 +85,7 @@ export default function FactForm({
                      id='fact'
                      placeholder='Dato curioso'
                      defaultValue={values?.fact ?? ''}
+                     onChange={() => setIsDisabled(false)}
                      required
                   ></textarea>
                </label>
@@ -88,6 +95,7 @@ export default function FactForm({
                      id='category'
                      placeholder='Dato curioso'
                      defaultValue={values?.category ?? ''}
+                     onChange={() => setIsDisabled(false)}
                      required
                   >
                      <option value=''>Seleccione categoría</option>
@@ -103,13 +111,9 @@ export default function FactForm({
                <button
                   className='opt-button bg-blue-600 w-24 disabled:opacity-60 disabled:pointer-events-none'
                   form={formId}
-                  disabled={isLoading}
+                  disabled={isLoading || isDisabled}
                >
-                  {isLoading ? (
-                     <AiOutlineLoading className='size-5 animate-spin mx-auto' />
-                  ) : (
-                     'Guardar'
-                  )}
+                  {isLoading ? <Loading className='mx-auto' /> : 'Guardar'}
                </button>
                <button
                   className='opt-button bg-red-600 disabled:opacity-60 disabled:pointer-events-none'

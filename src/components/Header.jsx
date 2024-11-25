@@ -1,27 +1,26 @@
 import PropTypes from 'prop-types';
 
 import { setThemePreference } from '@/utils/setThemePreference';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { AiOutlineMoon, AiOutlinePlus, AiOutlineSun } from 'react-icons/ai';
 import {
    MdFormatListBulleted,
    MdOutlineAutoAwesomeMosaic,
 } from 'react-icons/md';
-import FactForm from './FactForm';
+import Loading from './icons/Loading';
+
+const FactForm = lazy(() => import('./FactForm'));
 
 export default function Header({ showAsList, addFact, toggleViewMode }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
-   const handleSubmit = async (e) => {
-      const form = e.currentTarget;
+   const handleSubmit = async (data) => {
       const id = crypto.randomUUID();
-      const data = Object.fromEntries(new window.FormData(form));
 
       if (data.category === '') return;
 
       await addFact({ id, ...data });
-      form.reset();
       closeForm();
    };
 
@@ -85,11 +84,19 @@ export default function Header({ showAsList, addFact, toggleViewMode }) {
                </li>
             </ul>
          </nav>
-         <FactForm
-            handleSubmit={handleSubmit}
-            open={openForm}
-            close={closeForm}
-         />
+         {openForm && (
+            <Suspense
+               fallback={
+                  <Loading className='fixed grid place-content-center size-full inset-0 bg-black/10 z-10 [&>*]:size-10' />
+               }
+            >
+               <FactForm
+                  handleSubmit={handleSubmit}
+                  open={openForm}
+                  close={closeForm}
+               />
+            </Suspense>
+         )}
       </>
    );
 }

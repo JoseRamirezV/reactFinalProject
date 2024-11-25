@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 
-import FactForm from './FactForm';
+import Loading from './icons/Loading';
+
+const FactForm = lazy(() => import('./FactForm'));
 
 export default function Item({ item, deleteFact, updateFact, className }) {
    const [openForm, setOpenForm] = useState(false);
    const closeForm = () => setOpenForm(false);
 
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-      const form = e.currentTarget;
-      const data = Object.fromEntries(new window.FormData(form));
+   const handleSubmit = async (data) => {
+      // eslint-disable-next-line no-unused-vars
+      const { _id, userEmail, ...fact } = item;
 
-      await updateFact(item._id, { id: item._id, ...data });
-      form.reset();
+      if (JSON.stringify(data) !== JSON.stringify(fact))
+         await updateFact(item._id, { id: item._id, ...data });
       closeForm();
    };
 
@@ -44,7 +45,10 @@ export default function Item({ item, deleteFact, updateFact, className }) {
                {item.fact}
             </p>
             <footer className='relative text-xs text-start my-4 flex-grow-1'>
-               <a href='#' className='hover:underline block pt-4 w-fit text-gray-900 dark:text-white transition-colors'>
+               <a
+                  href='#'
+                  className='hover:underline block pt-4 w-fit text-gray-900 dark:text-white transition-colors'
+               >
                   {item.category}
                </a>
                <div className='absolute right-0 bottom-0 flex gap-2 transform scale-0 group-hover:scale-100 origin-right transition-transform'>
@@ -63,13 +67,20 @@ export default function Item({ item, deleteFact, updateFact, className }) {
                </div>
             </footer>
          </div>
-
-         <FactForm
-            handleSubmit={handleSubmit}
-            values={item}
-            open={openForm}
-            close={closeForm}
-         />
+         {openForm && (
+            <Suspense
+               fallback={
+                  <Loading className='fixed grid place-content-center size-full inset-0 bg-black/10 z-10 [&>*]:size-10' />
+               }
+            >
+               <FactForm
+                  handleSubmit={handleSubmit}
+                  values={item}
+                  open={openForm}
+                  close={closeForm}
+               />
+            </Suspense>
+         )}
       </>
    );
 }
@@ -77,6 +88,7 @@ export default function Item({ item, deleteFact, updateFact, className }) {
 Item.propTypes = {
    item: PropTypes.shape({
       _id: PropTypes.string,
+      userEmail: PropTypes.string,
       title: PropTypes.string,
       fact: PropTypes.string,
       category: PropTypes.string,

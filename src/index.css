@@ -19,7 +19,20 @@
    -moz-osx-font-smoothing: grayscale;
 
    scroll-behavior: smooth;
-   scrollbar-gutter: stable
+   scrollbar-gutter: stable;
+}
+
+::-webkit-scrollbar {
+   width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+   @apply bg-slate-200 dark:bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+   border: solid;
+   @apply rounded-full bg-slate-400 dark:bg-slate-600 border-2 border-slate-200 dark:border-slate-800;
 }
 
 .dark-light-bg {
